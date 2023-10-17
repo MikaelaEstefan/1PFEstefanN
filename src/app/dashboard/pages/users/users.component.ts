@@ -30,13 +30,19 @@ export class UsersComponent {
       .subscribe({
         next: (v) => {
           if (!!v) {
-            this.users = [
-              ...this.users,
-              {
-                ...v,
-                id: new Date().getTime(),
+            const newUser: User = {
+              id: new Date().getTime(),
+              name: v.name,
+              lastName: v.lastName,
+              email: v.email,
+              birthDate: v.birthDate,
+              address: {
+                street: v.street,
+                city: v.city,
+                zipCode: v.zipCode,
               },
-            ];
+            };
+            this.users = [...this.users, newUser];
           }
         },
       });
